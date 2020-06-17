@@ -8,8 +8,6 @@ import java.util.*;
 public class exec1 {
     public static void main ( String[] args ) {
         exc16 ();
-        exc15 ();
-
    }
 
 
@@ -504,7 +502,7 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
         Bunch bn=new Bunch();
         String wq="";
 
-        while (!wq.equals("stop")) {
+       /* while (!wq.equals("stop")) {
             System.out.println("Вы хотите добавить эллемент");
             wq=(String)sc1.nextLine();
             if (!wq.equals("stop"))
@@ -514,15 +512,28 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
                 bn.setArr_bunch(arr_i);
             }
 
+        }*/
+
+        bn.setArr_bunch(98);bn.setArr_bunch(78);bn.setArr_bunch(65);
+        bn.setArr_bunch(56);bn.setArr_bunch(45); bn.setArr_bunch(12);
+        bn.setArr_bunch(83); bn.setArr_bunch(38); bn.setArr_bunch(42);
+        bn.setArr_bunch(65);
+
+        for (int i=0;i<bn.count_arr_bunch;i++)
+        {
+            System.out.println("arr_brunch["+i+"]="+bn.getArr_bunch(i));
         }
 
-        for (int i=0;i<bn.count_arr_bunch-1;i++)
+        System.out.println("**********************************************"+bn.count_arr_bunch);
+        bn.heapify(0);
+
+        for (int i=0;i<bn.count_arr_bunch;i++)
         {
             System.out.println("arr_brunch["+i+"]="+bn.getArr_bunch(i));
         }
 
 
-        System.out.println();
+        System.out.println("**********************************************"+bn.count_arr_bunch);
     }
 
     }
