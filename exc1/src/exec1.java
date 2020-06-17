@@ -7,7 +7,7 @@ import java.util.*;
 
 public class exec1 {
     public static void main ( String[] args ) {
-
+        exc16 ();
         exc15 ();
 
    }
@@ -494,6 +494,35 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
         String_m eq=new String_m();
         System.out.println ( eq.len_sequence (s1,s2));
         System.out.println (eq.s3);
+    }
+
+    //Двоичная куча
+    private static void exc16(){
+        Scanner sc = new Scanner(System.in);
+        Scanner sc1 = new Scanner(System.in);
+
+        Bunch bn=new Bunch();
+        String wq="";
+
+        while (!wq.equals("stop")) {
+            System.out.println("Вы хотите добавить эллемент");
+            wq=(String)sc1.nextLine();
+            if (!wq.equals("stop"))
+            {
+                System.out.println("arr_brunch[" + bn.count_arr_bunch + "]=");
+                int arr_i = sc.nextInt();
+                bn.setArr_bunch(arr_i);
+            }
+
+        }
+
+        for (int i=0;i<bn.count_arr_bunch-1;i++)
+        {
+            System.out.println("arr_brunch["+i+"]="+bn.getArr_bunch(i));
+        }
+
+
+        System.out.println();
     }
 
     }
