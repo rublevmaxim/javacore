@@ -1,3 +1,4 @@
+import maxsoft.level5.Bun;
 import maxsoft.level5.Cat;
 import maxsoft.level5.Cat.*;
 import maxsoft.level5.String_m;
@@ -7,7 +8,7 @@ import java.util.*;
 
 public class exec1 {
     public static void main ( String[] args ) {
-        exc16 ();
+        exc17 ();
    }
 
 
@@ -534,6 +535,19 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
 
 
         System.out.println("**********************************************"+bn.count_arr_bunch);
+    }
+
+    //Двоичная куча
+    private static void exc17(){
+        int[] data= {10,45,346,56,345,645,2336,5633,345};
+        //Bun.swap_bun(m,0,1);
+
+        Bun.heap_sort(data);
+
+        for(int i=0;i<data.length;i++){
+            System.out.println(data[i]);
+        }
+
     }
 
     }
