@@ -1,11 +1,11 @@
 package maxsoft.level5;
-
+//Пирамидальная сорти ровка
 public class Bun {
 
-        public static void swap_bun(int[] a,int i1, int i2) {
-            int tmp=a[i1];
-            a[i1]=a[i2];
-            a[i2]=tmp;
+        public static void swap_bun(int[] a,int i, int j) {
+            int tmp=a[i];
+            a[i]=a[j];
+            a[j]=tmp;
         }
 
         public static void heap_insert(int[] a,int n,int x) {
