@@ -495,59 +495,35 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
         System.out.println (eq.s3);
     }
 
+
+
     //Двоичная куча
     private static void exc16(){
-        Scanner sc = new Scanner(System.in);
-        Scanner sc1 = new Scanner(System.in);
-
-        Bunch bn=new Bunch();
-        String wq="";
-
-       /* while (!wq.equals("stop")) {
-            System.out.println("Вы хотите добавить эллемент");
-            wq=(String)sc1.nextLine();
-            if (!wq.equals("stop"))
-            {
-                System.out.println("arr_brunch[" + bn.count_arr_bunch + "]=");
-                int arr_i = sc.nextInt();
-                bn.setArr_bunch(arr_i);
-            }
-
-        }*/
-
-        bn.setArr_bunch(98);bn.setArr_bunch(78);bn.setArr_bunch(65);
-        bn.setArr_bunch(56);bn.setArr_bunch(45); bn.setArr_bunch(12);
-        bn.setArr_bunch(83); bn.setArr_bunch(38); bn.setArr_bunch(42);
-        bn.setArr_bunch(65);
-
-        for (int i=0;i<bn.count_arr_bunch;i++)
-        {
-            System.out.println("arr_brunch["+i+"]="+bn.getArr_bunch(i));
-        }
-
-        System.out.println("**********************************************"+bn.count_arr_bunch);
-        bn.heapify(0);
-
-        for (int i=0;i<bn.count_arr_bunch;i++)
-        {
-            System.out.println("arr_brunch["+i+"]="+bn.getArr_bunch(i));
-        }
-
-
-        System.out.println("**********************************************"+bn.count_arr_bunch);
-    }
-
-    //Двоичная куча
-    private static void exc17(){
         int[] data= {10,45,346,56,345,645,2336,5633,345};
         //Bun.swap_bun(m,0,1);
-
-        Bun.heap_sort(data);
-
         for(int i=0;i<data.length;i++){
-            System.out.println(data[i]);
+            System.out.print(data[i]+";");
         }
 
+
+        Bun.heap_sort(data);
+        System.out.println("");
+        for(int i=0;i<data.length;i++){
+            System.out.print(data[i]+";");
+        }
+
+    }
+    //Quick sort
+    private static void exc17(){
+        int[] data= {10,45,346,56,345,645,2336,5633,345};
+        for(int i=0;i<data.length;i++){
+            System.out.print(data[i]+";");
+        }
+        Bunch.quick_sort (data,0,data.length);
+        System.out.println("");
+        for(int i=0;i<data.length;i++){
+            System.out.print(data[i]+";");
+        }
     }
 
     //Работа с потоками ввода - вывода
