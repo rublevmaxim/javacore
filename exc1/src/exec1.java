@@ -3,12 +3,12 @@ import maxsoft.level5.Cat;
 import maxsoft.level5.Cat.*;
 import maxsoft.level5.String_m;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class exec1 {
     public static void main ( String[] args ) {
-        exc17 ();
+        exc18 ();
    }
 
 
@@ -549,5 +549,23 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
         }
 
     }
+
+    //Работа с потоками ввода - вывода
+    private static void exc18() {
+
+        //exc18.1
+        try {
+            InputStream inputStream= new FileInputStream("\12.txt");
+            System.out.println("OK");
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found");
+            e.printStackTrace();
+        }
+
+        //exc18.2
+
+
+    }
+
 
     }
