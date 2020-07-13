@@ -8,7 +8,7 @@ import java.util.*;
 
 public class exec1 {
     public static void main ( String[] args ) {
-        exc18 ();
+        exc19 ();
    }
 
 
@@ -529,7 +529,7 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
     //Работа с потоками ввода - вывода
     private static void exc18() {
 
-        //exc18.1
+        //exc18.1 Файл не найден
         try {
             InputStream inputStream= new FileInputStream("\12.txt");
             System.out.println("OK");
@@ -538,8 +538,59 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
             e.printStackTrace();
         }
 
-        //exc18.2
+        //exc18.2 Вывод массива побайтно
+        byte[] arr=new byte[]{1,3,5,7};
+        ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(arr);
 
+        int tmp;
+
+        while ((tmp=byteArrayInputStream.read())!=-1){
+            System.out.println(tmp);
+        }
+
+        //exc18.2 Вывод диапазона байт строки
+        String str="Hello";
+        byte[] arr2=str.getBytes();
+        ByteArrayInputStream byteArrayInputStream1=new ByteArrayInputStream(arr2,1,2);
+
+        int tmp1;
+
+        while ((tmp1=byteArrayInputStream1.read())!=-1){
+            System.out.println((char)tmp1);
+        }
+
+
+
+
+    }
+
+    //Работа с файлами
+    private static void exc19() {
+      try(PrintWriter pw=new PrintWriter(new OutputStreamWriter(System.out,"UTF-8"),true) ){
+          File f=new File("/home/max-work/IdeaProjects/javacore/exc1/src/exec1.java");
+          pw.println();
+          pw.println("Файл "+f.getName()+";"+(f.exists() ? "" : "не ")+"существует");
+          pw.println("Вы "+(f.canRead() ? "": "не ") + "может читать файл");
+          pw.println("Вы "+(f.canWrite() ? "": "не ") + "может записывать в файл");
+          pw.println("Длинна файла "+f.length()+" б");
+          pw.println();
+
+          File d = new File("/home/max-work/IdeaProjects/javacore/exc1/src");
+
+          pw.println("Содержимое каталога:");
+
+          if (d.exists() && d.isDirectory()){
+              String[] s=d.list();
+              for(int i=0;i<s.length;i++){
+                  pw.println(s[i]);
+              }
+          }
+
+
+
+      } catch (UnsupportedEncodingException e) {
+          e.printStackTrace();
+      }
 
     }
 
