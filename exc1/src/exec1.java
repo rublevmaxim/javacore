@@ -5,10 +5,11 @@ import maxsoft.level5.String_m;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class exec1 {
     public static void main ( String[] args ) {
-        exc19 ();
+        exc20 ();
    }
 
 
@@ -564,7 +565,7 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
 
     }
 
-    //Работа с файлами
+    //Работа с файлами 1
     private static void exc19() {
       try(PrintWriter pw=new PrintWriter(new OutputStreamWriter(System.out,"UTF-8"),true) ){
           File f=new File("/home/max-work/IdeaProjects/javacore/exc1/src/exec1.java");
@@ -593,6 +594,81 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
       }
 
     }
+    //Работа с файлами 2. Сравнение BufferedInputStream(читает из файла данные заданными блоками)
+    //и FileInputStream(читает данные из файла по 1 байту)
+    private static void exc20()  {
+        Date date = new Date();
+        Date date1 = new Date();
 
+        try(FileOutputStream fileOutputStream = new FileOutputStream("test.txt", true);) {
+            //Наполняем файл
+            FileInputStream fileInputStream = new FileInputStream("test.txt");
+            String greetings = "Привет! Добро пожаловать на JavaRush - лучший сайт для тех, кто хочет стать программистом!\r\n";
+            String greetings1="";
+            for (int i=1;i<200;i++) {
+                greetings1=i+greetings;
+                fileOutputStream.write(greetings1.getBytes());
+            }
+            //Считываем файл с помощью fileInputStream
+            date=new Date();
+
+            int i;
+
+            if (fileInputStream.markSupported()) fileInputStream.mark(0);//Возврат в начало файла
+
+
+            while((i = fileInputStream.read())!= -1){
+
+                // System.out.print((char)i);
+            }
+            fileInputStream.close();
+
+            fileInputStream = new FileInputStream("test.txt");
+
+            date1 = new Date();
+
+            System.out.println("time fileInputStream:"+(date1.getTime() - date.getTime()));
+
+            //Считываем файл с помощью BufferedInputStream
+            date=new Date();
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+
+           while((i = bufferedInputStream.read())!= -1){
+
+                //System.out.print((char)i);
+            }
+
+            //Считываем Поток через сканер и выводим построчно
+            //Scanner s = new Scanner(bufferedInputStream).useDelimiter("\\A");
+            //String result = s.hasNext() ? s.next() : "";
+            //System.out.println(result);
+
+            //Считываем Поток через Collectors и выводим построчно
+            //String result1 = new BufferedReader(new InputStreamReader(bufferedInputStream))
+             //       .lines().collect(Collectors.joining("\n"));
+
+            //System.out.println(result1);
+
+
+
+            date1 = new Date();
+
+            System.out.println("time bufferedInputStream:"+(date1.getTime() - date.getTime()));
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+    }
 
     }
