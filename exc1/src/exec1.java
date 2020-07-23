@@ -4,12 +4,15 @@ import maxsoft.level5.Cat.*;
 import maxsoft.level5.String_m;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class exec1 {
     public static void main ( String[] args ) {
-        exc20 ();
+        exc23 ();
    }
 
 
@@ -609,6 +612,7 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
                 greetings1=i+greetings;
                 fileOutputStream.write(greetings1.getBytes());
             }
+
             //Считываем файл с помощью fileInputStream
             date=new Date();
 
@@ -662,12 +666,128 @@ It's Java string: \"C:\\Program Files\\Java\\jdk1.7.0\\bin\"
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // Работа с system.in => Поток выдаёт Byte
+    private static void exc21() {
+        int i= 0;
+       /* try {
+            i = System.in.read();
+            System.out.println(i);//Выведится Ascii code 1-го символа ввода
+            System.out.println((char)i);//Выведится 1-й символа ввода
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        /*int i2 = 0;
+        try(InputStreamReader inputStreamReader =new InputStreamReader(System.in);) {
+            i2 = inputStreamReader.read();
+            System.out.println(i2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        //BufferedReader принимает на вход Reader и выполняет буферизацию(размер буфера 8192)
+        //InputStreamReader принимает на вход поток ввода in
+
+        BufferedInputStream br1=new BufferedInputStream(System.in);
+        try {
+            //int i3=br.read();
+            //String i4=br.readLine();
+            int i5=Integer.parseInt(br.readLine());
+            //System.out.println(i3);
+            System.out.println(i5);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // DataInputStream, DataOutputStream Позволяют читать/записывать в файл типизированные наборы данных
+        //try(DataOutputStream out = new DataOutputStream(new BufferedOutputStream((new FileOutputStream("data_j.txt"))));
+         //   DataInputStream in =new DataInputStream(new BufferedInputStream((new FileInputStream("data_j.txt")))); ) {
+        try(DataOutputStream out = new DataOutputStream((new FileOutputStream("data_j.txt")));
+                DataInputStream in =new DataInputStream((new FileInputStream("data_j.txt"))); ) {
+            out.writeShort(100);
+            out.writeInt(1000);
+            out.writeLong(10L);
+            out.writeUTF("Hello World!!!");
+            out.flush();
 
 
+            System.out.println("Short "+in.readShort());
+            System.out.println("Int "+in.readInt());
+            System.out.println("Long "+in.readLong());
+            System.out.println("UTF "+in.readUTF());
 
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //FileReader, FileWriter,BufferdReader, RandomAccessFile
+    private static void exc22() {
+        File f1= new File("data_j.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader(f1))) {
+            String temp;
+            while ((temp=br.readLine())!=null){
+                System.out.println(temp);
+            }
+            br.close();
+            PrintWriter pw=new PrintWriter(new FileWriter(f1,true));// Если append=false то перезапись
+            pw.println("Good Luck");
+            pw.flush();
+            pw.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        RandomAccessFile raf =null;
+        try {
+            raf = new RandomAccessFile("data_j.txt","rw");
+            raf.write(new byte[]{0,1,2,3,4,5,6,7,8,9});
+            raf.seek(5);
+            raf.write(new byte[]{33,44,55});
+            raf.seek(0);
+            byte[] arr=new byte[10];
+            int n=raf.read(arr,0,10);
+            System.out.println(Arrays.toString(arr));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
+    }
+    //NIO(nonblocking input, output) работа с файлами и URL
+    private static void exc23() {
+        /*File sourceFile=new File("data_j.txt");
+        File targetFile=new File("data_j");
+
+        try {
+            Files.copy(sourceFile.toPath(),targetFile.toPath());
+            Files.move(sourceFile.toPath(),targetFile.toPath());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
+        try {
+            URL nbuApi=new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange");
+            BufferedReader br=new BufferedReader(new InputStreamReader(nbuApi.openStream()));
+            String str;
+            while ((str=br.readLine())!=null){
+                System.out.println(str);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
